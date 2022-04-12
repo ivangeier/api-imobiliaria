@@ -1,10 +1,14 @@
 {
   "name": "api-imobiliaria",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "server.ts",
   "repository": "https://github.com/helena-machado/imobiliaria.git",
   "author": "Resilia Grupo 3",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.ts",
+    "start": "node server.ts"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
