@@ -21,7 +21,7 @@ export default async function createRealEstate(
     throw new Error('Real estate already exists');
   } else {
     const createdRealEstate = await RealEstate.create({
-      userId: userId,
+      userId,
       ...realEstateData,
     });
     return createdRealEstate.get();
