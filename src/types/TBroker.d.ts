@@ -8,7 +8,6 @@ type TBroker = {
   cpf: string;
   creci: string;
   creciState: string;
-  creciExp: any;
   city: string;
   isActive: boolean;
 };

@@ -42,10 +42,6 @@ const Broker = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    creciExp: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
     isActive: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
