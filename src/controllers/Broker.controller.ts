@@ -1,6 +1,7 @@
 import { jwt } from "../utils/token";
 import createBroker from "./services/broker/createBroker.service";
 import deleteBroker from "./services/broker/deleteBroker.service";
+import getBrokerById from "./services/broker/getBrokerById.service";
 
 const create = async (req, res) => {
   const brokerData = req.body;
@@ -28,7 +29,19 @@ const deleteOne = async (req, res) => {
   }
 };
 
+const getById = async (req, res) => {
+  const token = jwt.decode(req);
+  const { id } = token;
+  try {
+    const broker = await getBrokerById(id);
+    res.status(200).json(broker);
+  } catch (error) {
+    res.status(404).json(error.message);
+  }
+};
+
 export const BrokerController = {
   create,
   deleteOne,
+  getById,
 };
