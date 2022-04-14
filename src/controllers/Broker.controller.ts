@@ -1,11 +1,15 @@
+import { jwt } from "../utils/token";
 import createBroker from "./services/broker/createBroker.service";
 
 const create = async (req, res) => {
   const brokerData = req.body;
 
   try {
-    await createBroker(brokerData);
-    res.status(201).json({ message: "Created" });
+    const broker = await createBroker(brokerData);
+    const { id, creci } = broker;
+    const payload = { id, creci };
+    const token = jwt.encode(payload);
+    res.status(201).json({ message: "Created", token });
   } catch (error) {
     res.status(409).json(error.message);
   }
