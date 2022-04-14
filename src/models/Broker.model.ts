@@ -45,7 +45,6 @@ const Broker = sequelize.define(
     isActive: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 1,
     },
   },
   {
