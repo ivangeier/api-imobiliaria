@@ -21,8 +21,9 @@ const Property = sequelize.define("property", {
     allowNull: false,
   },
   isActive: {
-    type: DataTypes.ENUM("activated", "disabled"),
+    type: DataTypes.BOOLEAN,
     allowNull: false,
+    defaultValue: 1,
   },
   state: {
     type: DataTypes.STRING,
