@@ -1,16 +1,7 @@
-import User from '../../models/User.model';
-import {encrypt} from '../../utils/encrypt';
+import User from '../../../models/User.model';
+import {encrypt} from '../../../utils/encrypt';
 
-type UserData = {
-  firstName: string;
-  lastName: string;
-  cpf: string;
-  email: string;
-  password: string;
-  role: string;
-};
-
-export default async function createUser(userData: UserData) {
+export default async function createUser(userData: Partial<TUser>) {
   const user = await User.findOne({
     where: {
       cpf: userData.cpf,

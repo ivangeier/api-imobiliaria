@@ -1,15 +1,7 @@
-import RealEstate from '../../models/RealEstate.model';
-
-type Props = {
-  name: string;
-  cnpj: string;
-  city: string;
-  initialBroker: boolean;
-  initialProperties: string;
-};
+import RealEstate from '../../../models/RealEstate.model';
 
 export default async function createRealEstate(
-  realEstateData: Props,
+  realEstateData: Partial<TRealEstate>,
   userId: string
 ) {
   const realEstate = await RealEstate.findOne({
