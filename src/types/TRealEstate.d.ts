@@ -6,6 +6,7 @@ type TRealEstate = {
   initialBroker: string;
   initialProperties: string;
   properties: string;
-  broker: string;
+  brokers: string;
   role: string;
+  status: string;
 };

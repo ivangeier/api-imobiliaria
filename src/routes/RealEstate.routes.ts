@@ -16,4 +16,14 @@ export const realEstateRoutes = (app: Express) => {
     auth.authenticate(),
     RealEstateController.updateAll
   );
+  app.get(
+    '/realestate/active',
+    auth.authenticate(),
+    RealEstateController.getAllActive
+  );
+  app.patch(
+    '/realestate/status',
+    auth.authenticate(),
+    RealEstateController.updateStatus
+  );
 };

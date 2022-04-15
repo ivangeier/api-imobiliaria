@@ -1,4 +1,7 @@
+import User from '../models/User.model';
+import {decrypt} from '../utils/encrypt';
 import {jwt} from '../utils/token';
+import createLogin from './services/auth/login.service';
 import updatePassword from './services/realestate/updatePassword.service';
 import createUser from './services/user/createUser.service';
 import deleteUser from './services/user/deleteUser.service';
@@ -89,6 +92,21 @@ const deleteOne = async (req, res) => {
   }
 };
 
+// 7. login
+
+const login = async (req, res) => {
+  const {email, password} = req.body;
+
+  try {
+    const user = await createLogin(email, password);
+    const payload = {id: user.id, role: user.role};
+    const token = jwt.encode(payload);
+    res.status(200).json({user, token});
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
 export const UserController = {
   getAll,
   getById,
@@ -96,4 +114,5 @@ export const UserController = {
   updateAll,
   passwordUpdate,
   deleteOne,
+  login,
 };

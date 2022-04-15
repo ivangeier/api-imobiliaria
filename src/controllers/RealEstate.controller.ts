@@ -1,10 +1,21 @@
 import {jwt} from '../utils/token';
 import createRealEstate from './services/realestate/createRealEstate.service';
 import deleteRealEstate from './services/realestate/deleteRealEstate.service';
+import getAllActiveRealEstates from './services/realestate/getAllActiveRealEstates.service';
 import updateRealEstate from './services/realestate/updateRealEstate.service';
+import updateRealEstateStatus from './services/realestate/updateRealEstateStatus.service';
 import createUser from './services/user/createUser.service';
 import deleteUser from './services/user/deleteUser.service';
 import updateUser from './services/user/updateUser.service';
+
+const getAllActive = async (req, res) => {
+  try {
+    const users = await getAllActiveRealEstates();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
 
 const create = async (req, res) => {
   const {userData, realEstateData} = req.body;
@@ -46,8 +57,23 @@ const updateAll = async (req, res) => {
   }
 };
 
+const updateStatus = async (req, res) => {
+  const token = jwt.decode(req);
+  const {role} = token;
+  const {status, realEstateId} = req.body;
+
+  try {
+    await updateRealEstateStatus(role, realEstateId, status);
+    res.status(200).json({message: 'Successfully updated'});
+  } catch (error) {
+    res.status(401).send(error.message);
+  }
+};
+
 export const RealEstateController = {
   create,
   deleteOne,
   updateAll,
+  getAllActive,
+  updateStatus,
 };

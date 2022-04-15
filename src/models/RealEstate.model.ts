@@ -41,6 +41,11 @@ const RealEstate = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: '',
+    },
   },
   {
     tableName: 'realEstates',

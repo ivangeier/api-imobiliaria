@@ -1,5 +1,5 @@
-import Broker from "../../../models/Broker.model";
-import { encrypt } from "../../../utils/encrypt";
+import Broker from '../../../models/Broker.model';
+import {encrypt} from '../../../utils/encrypt';
 
 export default async function createBroker(brokerData: Partial<TBroker>) {
   const broker = await Broker.findOne({
@@ -8,9 +8,9 @@ export default async function createBroker(brokerData: Partial<TBroker>) {
     },
   });
   if (broker) {
-    throw new Error("Broker already exists");
+    throw new Error('Broker already exists');
   } else {
-    const { password, ...broker } = brokerData;
+    const {password, ...broker} = brokerData;
     const encodedPassword = await encrypt(password);
     const createdBroker = await Broker.create({
       password: encodedPassword,

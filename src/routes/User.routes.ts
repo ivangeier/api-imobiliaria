@@ -15,4 +15,5 @@ export const userRoutes = (app: Express) => {
   );
   app.put('/user/update', auth.authenticate(), UserController.updateAll);
   app.delete('/user/delete', auth.authenticate(), UserController.deleteOne);
+  app.post('/login', UserController.login);
 };
