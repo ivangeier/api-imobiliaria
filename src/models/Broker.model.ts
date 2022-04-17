@@ -1,8 +1,10 @@
-import sequelize from "../db/connection";
-import { DataTypes } from "sequelize";
+import sequelize from '../db/connection';
+import { DataTypes } from 'sequelize';
+import User from './User.model';
+import RealEstate from './RealEstate.model';
 
 const Broker = sequelize.define(
-  "broker",
+  'broker',
   {
     id: {
       type: DataTypes.UUID,
@@ -10,29 +12,17 @@ const Broker = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    firstName: {
-      type: DataTypes.STRING,
+    userId: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: DataTypes.STRING,
+    realEstateId: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
     phone: {
       type: DataTypes.STRING,
       allowNull: true,
-    },
-    cpf: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     creci: {
       type: DataTypes.STRING,
@@ -45,11 +35,18 @@ const Broker = sequelize.define(
     isActive: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true,
     },
   },
   {
-    tableName: "brokers",
+    tableName: 'brokers',
   }
 );
+
+User.hasOne(Broker);
+Broker.belongsTo(User);
+
+RealEstate.hasMany(Broker);
+Broker.belongsTo(RealEstate);
 
 export default Broker;

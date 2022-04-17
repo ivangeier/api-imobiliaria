@@ -1,11 +1,8 @@
 type TBroker = {
   id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
+  userId?: string;
+  realEstateId?: string;
   phone: string;
-  cpf: string;
   creci: string;
   creciState: string;
   city: string;
