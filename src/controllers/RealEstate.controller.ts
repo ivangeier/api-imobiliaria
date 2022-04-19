@@ -2,6 +2,7 @@ import {jwt} from '../utils/token';
 import createRealEstate from './services/realestate/createRealEstate.service';
 import deleteRealEstate from './services/realestate/deleteRealEstate.service';
 import getAllActiveRealEstates from './services/realestate/getAllActiveRealEstates.service';
+import getAllRealEstates from './services/realestate/getAllRealEstates.service';
 import updateRealEstate from './services/realestate/updateRealEstate.service';
 import updateRealEstateStatus from './services/realestate/updateRealEstateStatus.service';
 import createUser from './services/user/createUser.service';
@@ -16,6 +17,23 @@ const getAllActive = async (req, res) => {
     res.status(400).json(error.message);
   }
 };
+
+const getAll = async (req, res) => {
+  const token = jwt.decode(req);
+  const {role} = token;
+
+  if (role !== 'admin') {
+    res.status(400).json({error: 'Você não tem permissão para acessar essa rota'});
+    return;
+  }
+
+  try {
+    const realEstates = await getAllRealEstates();
+    res.status(200).json(realEstates);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
 
 const create = async (req, res) => {
   const {userData, realEstateData} = req.body;
@@ -76,4 +94,5 @@ export const RealEstateController = {
   updateAll,
   getAllActive,
   updateStatus,
+  getAll
 };
