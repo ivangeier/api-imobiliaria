@@ -2,8 +2,6 @@ import User from '../models/User.model';
 import {decrypt} from '../utils/encrypt';
 import {jwt} from '../utils/token';
 import createLogin from './services/auth/login.service';
-import getBrokerCredentials from './services/broker/getBrokerCredentials.service';
-import getRealEstateCredentials from './services/realestate/getRealEstateCredentials.service';
 import updatePassword from './services/realestate/updatePassword.service';
 import createUser from './services/user/createUser.service';
 import deleteUser from './services/user/deleteUser.service';
@@ -101,28 +99,11 @@ const login = async (req, res) => {
 
   try {
     const user = await createLogin(email, password);
+    
+    const payload = {id: user.id, role: user.role};
+    const token = jwt.encode(payload);
+    res.status(200).json({user, token});
 
-    switch (user.role) {
-      case 'broker':
-          const {id, realEstateId} = await getBrokerCredentials(user.id);
-          const payload = {id: user.id, role: user.role, brokerId: id, realEstateId};
-          const token = jwt.encode(payload);
-          res.status(200).json({user, token});
-        break;
-      case 'realEstate':
-        const {id} = await getRealEstateCredentials(user.id);
-        const payload = {id: user.id, role: user.role, realEstateId: id};
-        const token = jwt.encode(payload);
-        res.status(200).json({user, token});
-      default:
-        const payload = {id: user.id, role: user.role};
-        const token = jwt.encode(payload);
-        res.status(200).json({user, token});
-        break;
-    }
-
-    if (user.role === 'broker') {
-    }
   } catch (error) {
     res.status(400).json(error);
   }
