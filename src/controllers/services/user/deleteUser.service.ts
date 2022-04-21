@@ -9,7 +9,13 @@ export default async function deleteUser(id: string) {
   if (!user) {
     throw new Error('User not found');
   } else {
-    await User.destroy({where: {id}});
+    await User.update({
+      isActive: false,
+    }, {
+      where: {
+        id,
+      },
+    });
+  }
     return;
   }
-}

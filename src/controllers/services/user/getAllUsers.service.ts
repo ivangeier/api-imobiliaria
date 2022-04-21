@@ -5,11 +5,12 @@ export default async function getAllUsers() {
     where: {
       role: 'client',
     },
+    attributes: {
+      exclude: ['password'],
+    }
   });
 
-  const noPasswordData = users.map((user) => {
-    const {password, ...dataWithoutPassword} = user.get();
-    return dataWithoutPassword;
+  return users.map((user) => {
+    return user.get();
   });
-  return noPasswordData;
 }
