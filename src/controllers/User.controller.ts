@@ -82,8 +82,7 @@ const passwordUpdate = async (req, res) => {
 // 6. deleta um usuário
 
 const deleteOne = async (req, res) => {
-  const token = jwt.decode(req);
-  const {id} = token;
+  const {id} = req.params;
 
   try {
     await deleteUser(id);

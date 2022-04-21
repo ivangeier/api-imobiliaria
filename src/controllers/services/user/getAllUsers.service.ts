@@ -4,6 +4,7 @@ export default async function getAllUsers() {
   const users = await User.findAll({
     where: {
       role: 'client',
+      isActive: true,
     },
     attributes: {
       exclude: ['password'],
