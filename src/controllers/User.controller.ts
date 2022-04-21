@@ -6,6 +6,7 @@ import updatePassword from './services/realestate/updatePassword.service';
 import createUser from './services/user/createUser.service';
 import deleteUser from './services/user/deleteUser.service';
 import getAllUsers from './services/user/getAllUsers.service';
+import getPayload from './services/user/getPayload.service';
 import getUserById from './services/user/getUserById.service';
 import updateUser from './services/user/updateUser.service';
 
@@ -100,7 +101,9 @@ const login = async (req, res) => {
   try {
     const user = await createLogin(email, password);
     
-    const payload = {id: user.id, role: user.role};
+    const payload = await getPayload(user)
+    console.log(payload);
+    
     const token = jwt.encode(payload);
     res.status(200).json({user, token});
 
