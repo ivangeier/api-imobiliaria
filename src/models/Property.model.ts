@@ -1,5 +1,5 @@
 import sequelize from "../db/connection";
-import { DataTypes } from "sequelize/types";
+import { DataTypes } from "sequelize";
 import RealEstate from "./RealEstate.model";
 import Broker from "./Broker.model";
 
@@ -25,7 +25,7 @@ const Property = sequelize.define(
     isActive: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 1,
+      defaultValue: true,
     },
     state: {
       type: DataTypes.STRING,
@@ -83,6 +83,5 @@ const Property = sequelize.define(
 
 RealEstate.hasMany(Property);
 Property.belongsTo(RealEstate);
-Broker.belongsToMany(Property, { through: Broker });
 
 export default Property;

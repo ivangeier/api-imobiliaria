@@ -4,6 +4,7 @@ import {realEstateRoutes} from './RealEstate.routes';
 import {userRoutes} from './User.routes';
 import {brokerRoutes} from './Broker.routes';
 import {propertyRoutes} from './Property.routes';
+import { adminRoutes } from './Admin.routes';
 
 export default (app: Express) => {
   app.get('/', (req, res) => {
@@ -14,5 +15,6 @@ export default (app: Express) => {
   realEstateRoutes(app);
   userRoutes(app);
   brokerRoutes(app);
-  // propertyRoutes(app);
+  propertyRoutes(app);
+  // adminRoutes(app);
 };

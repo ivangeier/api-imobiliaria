@@ -1,6 +1,6 @@
 import Property from "../../../models/Property.model";
 
-export default async function createProperty(propertyData: Partial<TProperty>) {
+export default async function createProperty(propertyData: Partial<TProperty>, realEstateId: string) {
   const property = await Property.findOne({
     where: {
       title: propertyData.title,
@@ -10,7 +10,8 @@ export default async function createProperty(propertyData: Partial<TProperty>) {
     throw new Error("Property already exists");
   } else {
     const createdProperty = await Property.create({
-      ...Property,
+      realEstateId,
+      ...propertyData,
     });
     return createdProperty.get();
   }

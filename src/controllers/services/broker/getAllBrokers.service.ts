@@ -17,4 +17,4 @@ export default async function getAllBrokers(realEstateId) {
    return brokers.map((broker) => {
       return broker.get();
    });
-   }
+}

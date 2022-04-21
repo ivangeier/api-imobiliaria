@@ -23,7 +23,7 @@ const RealEstate = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    properties: {
+    propertiesNumber: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 0,
