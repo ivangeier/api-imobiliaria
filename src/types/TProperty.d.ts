@@ -16,4 +16,5 @@ type TProperty = {
   valueSell: string;
   isSelling: boolean;
   isRenting: boolean;
+  type: string;
 };
