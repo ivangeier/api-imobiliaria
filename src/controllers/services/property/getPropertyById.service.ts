@@ -9,7 +9,8 @@ export default async function getPropertyById(id) {
 
    if (!property) {
       throw new Error("Property not found");
+   } else {
+      return property.get();
    }
    
-   return property.get();
    }

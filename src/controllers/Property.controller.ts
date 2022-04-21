@@ -22,7 +22,7 @@ const getAll = async (req, res) => {
     const properties = await getAllProperties();
     res.status(200).json(properties);
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(404).json(error.message);
   }
 }
 
@@ -33,7 +33,7 @@ const deleteById = async (req, res) => {
     await deleteProperty(id);
     res.status(200).json({ message: "Property inactivated" });
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(404).json(error.message);
   }
 };
 
@@ -44,7 +44,7 @@ const getById = async (req, res) => {
     const property = await getPropertyById(id);
     res.status(200).json(property);
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(404).json(error.message);
   }
 }
 

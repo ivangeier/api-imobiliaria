@@ -5,11 +5,13 @@ export default async function getUserById(id: string) {
     where: {
       id,
     },
+    attributes: {
+      exclude: ['password'],
+    }
   });
 
   if (user) {
-    const {password, ...dataWithoutPassword} = user.get();
-    return dataWithoutPassword;
+    return user;
   } else {
     throw new Error('User not found');
   }

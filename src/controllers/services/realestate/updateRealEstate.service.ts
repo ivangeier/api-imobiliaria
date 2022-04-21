@@ -4,6 +4,11 @@ export default async function updateRealEstate(
   id: string,
   data: Partial<TRealEstate>
 ) {
-  await RealEstate.update(data, {where: {id}});
-  return;
+  const realEstate = await RealEstate.update(data, {where: {id}});
+
+  if (!realEstate) {
+    throw new Error("RealEstate not found");
+  } else {
+    return;
+  }
 }
