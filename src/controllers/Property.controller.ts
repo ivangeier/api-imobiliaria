@@ -3,6 +3,7 @@ import { jwt } from "../utils/token";
 import createProperty from "./services/property/createProperty.service";
 import deleteProperty from "./services/property/deleteProperty.service";
 import getAllProperties from "./services/property/getAllProperties.service";
+import getPropertyById from "./services/property/getPropertyById.service";
 
 const create = async (req, res) => {
   const { realEstateId } = jwt.decode(req)
@@ -36,9 +37,21 @@ const deleteById = async (req, res) => {
   }
 };
 
+const getById = async (req, res) => {
+  const { id } = req.params;
+  
+  try {
+    const property = await getPropertyById(id);
+    res.status(200).json(property);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+}
+
 
 export const PropertyController = {
   create,
   getAll,
-  deleteById
+  deleteById,
+  getById
 };
