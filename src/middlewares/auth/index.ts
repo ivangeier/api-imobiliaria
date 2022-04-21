@@ -12,14 +12,12 @@ const params = {
 };
 
 export default () => {
-  const strategy = new Strategy(params, async (payload, done) => {
-    const user = await (
-      await User.findOne({
+  const strategy = new Strategy(params, async (payload: any, done: any) => {
+    const user: any = await User.findOne({
         where: {
           id: payload.id,
         },
       })
-    ).get();
     if (user) {
       return done(null, {id: user.id});
     } else {

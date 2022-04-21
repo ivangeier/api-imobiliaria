@@ -11,7 +11,7 @@ export default async function createUser(userData: Partial<TUser>) {
     throw new Error('User already exists');
   } else {
     const {password, ...user} = userData;
-    const encodedPassword = await encrypt(password);
+    const encodedPassword = await encrypt(password!);
     const createdUser = await User.create({
       password: encodedPassword,
       ...user,
