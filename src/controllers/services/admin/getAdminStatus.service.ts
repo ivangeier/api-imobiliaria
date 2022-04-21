@@ -1,5 +1,5 @@
-import Broker from "../../../models/Broker.model";
 import Property from "../../../models/Property.model";
+import RealEstate from "../../../models/RealEstate.model";
 
 
 export default async function getAdminStatus(){
@@ -9,9 +9,9 @@ export default async function getAdminStatus(){
       },
    });
 
-   const countBrokers = await Broker.count({
+   const countBrokers = await RealEstate.count({
       where: {
-         isActive: true,
+         status: 'active',
       },
    });
 
@@ -21,6 +21,6 @@ export default async function getAdminStatus(){
       },
    });
 
-   return {properties: {title: 'Imóveis cadastrados', value: countProperties}, brokers: {title: 'Corretores cadastrados', value: countBrokers}, totalAmount: {title: 'Valor em imóveis', value: sumPropertiesAmount}};
+   return {properties: {title: 'Imóveis cadastrados', value: countProperties}, brokers: {title: 'Imobiliárias cadastradas', value: countBrokers}, totalAmount: {title: 'Valor em imóveis', value: sumPropertiesAmount}};
 
 }
