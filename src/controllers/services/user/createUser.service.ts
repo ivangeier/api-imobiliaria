@@ -2,7 +2,7 @@ import User from '../../../models/User.model';
 import {encrypt} from '../../../utils/encrypt';
 
 export default async function createUser(userData: Partial<TUser>) {
-  const user = await User.findOne({
+  const user: any = await User.findOne({
     where: {
       cpf: userData.cpf,
     },

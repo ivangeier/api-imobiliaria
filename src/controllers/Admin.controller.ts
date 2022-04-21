@@ -2,7 +2,7 @@ import { jwt } from "../utils/token";
 import getAdminStatus from "./services/admin/getAdminStatus.service";
 
 
-const getStatus = async (req, res) => {
+const getStatus = async (req: any, res: any) => {
    const token = jwt.decode(req);
    const {role} = token;
 
@@ -14,7 +14,7 @@ const getStatus = async (req, res) => {
    try {
       const status = await getAdminStatus();
       res.status(200).json({status});
-   } catch (error) {
+   } catch (error: any) {
       res.status(401).send(error.message);
    }
 }

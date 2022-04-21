@@ -1,9 +1,9 @@
 import RealEstate from '../../../models/RealEstate.model';
 
 export default async function updateRealEstateStatus(
-  role,
-  realEstateId,
-  status
+  role: string,
+  realEstateId: string,
+  status: string
 ) {
   if (role == 'admin') {
     const realEstate = await RealEstate.findOne({where: {id: realEstateId}});

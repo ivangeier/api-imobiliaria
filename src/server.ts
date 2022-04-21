@@ -1,7 +1,7 @@
-import app from './src/config/app';
-import routes from './src/routes';
+import app from './config/app';
+import routes from './routes';
 import 'dotenv/config';
-import sequelize from './src/db/connection';
+import sequelize from './db/connection';
 
 const PORT = process.env.PORT || 3000;
 

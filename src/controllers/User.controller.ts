@@ -12,31 +12,31 @@ import updateUser from './services/user/updateUser.service';
 
 // 1. pega todos os clientes
 
-const getAll = async (req, res) => {
+const getAll = async (req: any, res: any) => {
   try {
     const users = await getAllUsers();
     res.status(200).json(users);
-  } catch (error) {
+  } catch (error: any) {
     res.status(400).json(error.message);
   }
 };
 
 // 2. pega somente um cliente pelo id recebido no token
 
-const getById = async (req, res) => {
+const getById = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const {id} = token;
   try {
     const user = await getUserById(id);
     res.status(200).json(user);
-  } catch (error) {
+  } catch (error: any) {
     res.status(404).json(error.message);
   }
 };
 
 // 3. cria um usuário
 
-const create = async (req, res) => {
+const create = async (req: any, res: any) => {
   const userData = req.body;
 
   try {
@@ -45,28 +45,28 @@ const create = async (req, res) => {
     const payload = {id, role};
     const token = jwt.encode(payload);
     res.status(201).json({message: 'Created', token});
-  } catch (error) {
+  } catch (error: any) {
     res.status(409).json(error.message);
   }
 };
 
 // 4. atualiza dados de usuário
 
-const updateAll = async (req, res) => {
+const updateAll = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const {id} = token;
   const userData = req.body;
   try {
     await updateUser(id, userData);
     res.status(200).json({message: 'Successfully updated'});
-  } catch (error) {
+  } catch (error: any) {
     res.status(401).json(error.message);
   }
 };
 
 // 5. atualiza senha de usuário
 
-const passwordUpdate = async (req, res) => {
+const passwordUpdate = async (req: any, res: any) => {
   const {oldPassword, newPassword} = req.body;
   const token = jwt.decode(req);
   const {id} = token;
@@ -74,27 +74,27 @@ const passwordUpdate = async (req, res) => {
   try {
     await updatePassword(id, oldPassword, newPassword);
     res.status(202).json('Password updated successfully');
-  } catch (error) {
+  } catch (error: any) {
     res.status(409).json(error.message);
   }
 };
 
 // 6. deleta um usuário
 
-const deleteOne = async (req, res) => {
+const deleteOne = async (req: any, res: any) => {
   const {id} = req.params;
 
   try {
     await deleteUser(id);
     res.status(200).json({message: 'Successfully deleted'});
-  } catch (error) {
+  } catch (error: any) {
     res.status(404).json(error.message);
   }
 };
 
 // 7. login
 
-const login = async (req, res) => {
+const login = async (req: any, res: any) => {
   const {email, password} = req.body;
 
   try {
@@ -106,7 +106,7 @@ const login = async (req, res) => {
     const token = jwt.encode(payload);
     res.status(200).json({user, token});
 
-  } catch (error) {
+  } catch (error: any) {
     res.status(400).json(error);
   }
 };

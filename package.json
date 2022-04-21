@@ -1,14 +1,16 @@
 {
   "name": "api-imobiliaria",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "src/server.ts",
   "repository": "https://github.com/helena-machado/imobiliaria.git",
   "author": "Resilia Grupo 3",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --no-notify --files server.ts",
-    "start": "ts-node -r tsconfig-paths/register --files server.ts"
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev -r tsconfig-paths/register --no-notify --files server.ts"
   },
+  "postinstall": "yarn build",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.23",
     "nodemon": "^2.0.15",

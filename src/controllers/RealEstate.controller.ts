@@ -9,16 +9,16 @@ import createUser from './services/user/createUser.service';
 import deleteUser from './services/user/deleteUser.service';
 import updateUser from './services/user/updateUser.service';
 
-const getAllActive = async (req, res) => {
+const getAllActive = async (req: any, res: any) => {
   try {
     const users = await getAllActiveRealEstates();
     res.status(200).json(users);
-  } catch (error) {
+  } catch (error: any) {
     res.status(400).json(error.message);
   }
 };
 
-const getAll = async (req, res) => {
+const getAll = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const {role} = token;
 
@@ -30,12 +30,12 @@ const getAll = async (req, res) => {
   try {
     const realEstates = await getAllRealEstates();
     res.status(200).json(realEstates);
-  } catch (error) {
+  } catch (error: any) {
     res.status(400).send(error.message);
   }
 }
 
-const create = async (req, res) => {
+const create = async (req: any, res: any) => {
   const {userData, realEstateData} = req.body;
 
   try {
@@ -45,24 +45,24 @@ const create = async (req, res) => {
     const payload = {id, role, realEstateId: realEstate.id};
     const token = jwt.encode(payload);
     res.status(201).send({message: 'Created', token});
-  } catch (error) {
+  } catch (error: any) {
     res.status(409).send(error.message);
   }
 };
 
-const deleteOne = async (req, res) => {
+const deleteOne = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const {realEstateId, id} = token;
   try {
     await deleteRealEstate(realEstateId);
     await deleteUser(id);
     res.status(200).json({message: 'Successfully deleted'});
-  } catch (error) {
+  } catch (error: any) {
     res.status(404).send(error.message);
   }
 };
 
-const updateAll = async (req, res) => {
+const updateAll = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const {realEstateId, id} = token;
   const {userData, realEstateData} = req.body;
@@ -70,12 +70,12 @@ const updateAll = async (req, res) => {
     await updateRealEstate(realEstateId, realEstateData);
     await updateUser(id, userData);
     res.status(200).json({message: 'Successfully updated'});
-  } catch (error) {
+  } catch (error: any) {
     res.status(401).send(error.message);
   }
 };
 
-const updateStatus = async (req, res) => {
+const updateStatus = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const {role} = token;
   const {status, realEstateId} = req.body;
@@ -83,7 +83,7 @@ const updateStatus = async (req, res) => {
   try {
     await updateRealEstateStatus(role, realEstateId, status);
     res.status(200).json({message: 'Successfully updated'});
-  } catch (error) {
+  } catch (error: any) {
     res.status(401).send(error.message);
   }
 };

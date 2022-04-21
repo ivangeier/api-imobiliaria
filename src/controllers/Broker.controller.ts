@@ -7,7 +7,7 @@ import getBrokerById from './services/broker/getBrokerById.service';
 import updateBroker from './services/broker/updateBroker.service';
 import createUser from './services/user/createUser.service';
 
-const create = async (req, res) => {
+const create = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const { realEstateId } = token;
   const { userData, brokerData } = req.body;
@@ -24,54 +24,54 @@ const create = async (req, res) => {
     };
     const token = jwt.encode(payload);
     res.status(201).json({ message: 'Created', token });
-  } catch (error) {
+  } catch (error: any) {
     res.status(409).json(error.message);
   }
 };
 
-const deleteOne = async (req, res) => {
+const deleteOne = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const { id } = token;
 
   try {
     await deleteBroker(id);
     res.status(200).json({ message: 'Successfully deleted' });
-  } catch (error) {
+  } catch (error: any) {
     res.status(404).json(error.message);
   }
 };
 
-const getById = async (req, res) => {
+const getById = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const { id } = token;
   try {
     const broker = await getBrokerById(id);
     res.status(200).json(broker);
-  } catch (error) {
+  } catch (error: any) {
     res.status(404).json(error.message);
   }
 };
 
-const update = async (req, res) => {
+const update = async (req: any, res: any) => {
   const token = jwt.decode(req);
   const { id } = token;
   const brokerData = req.body;
   try {
     await updateBroker(id, brokerData);
     res.status(200).json({ message: 'Successfully updated' });
-  } catch (error) {
+  } catch (error: any) {
     res.status(401).json(error.message);
   }
 };
 
-const getAll = async (req, res) => {
+const getAll = async (req: any, res: any) => {
   const token = jwt.decode(req);
   
   const { realEstateId } = token;
   try {
     const brokers = await getAllBrokers(realEstateId);
     res.status(200).json(brokers);
-  } catch (error) {
+  } catch (error: any) {
     res.status(404).json(error.message);
   }
 }

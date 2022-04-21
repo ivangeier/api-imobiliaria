@@ -6,8 +6,8 @@ export default async function updatePassword(
   oldPassword: string,
   newPassword: string
 ) {
-  const user = await (await User.findOne({where: {id}})).get();
-  const passwordMatch = await decrypt(oldPassword, user.password);
+  const user: any = await User.findOne({where: {id}});
+  const passwordMatch: any = await decrypt(oldPassword, user.password);
 
   if (!passwordMatch) {
     throw new Error("Password don't match");

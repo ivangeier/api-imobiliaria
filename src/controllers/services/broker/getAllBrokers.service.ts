@@ -1,7 +1,7 @@
 import Broker from "../../../models/Broker.model";
 import User from "../../../models/User.model";
 
-export default async function getAllBrokers(realEstateId) {
+export default async function getAllBrokers(realEstateId: string) {
    const brokers = await Broker.findAll({
       where: {
          realEstateId,
