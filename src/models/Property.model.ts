@@ -75,6 +75,10 @@ const Property = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   },
   {
     tableName: "properties",
