@@ -16,5 +16,5 @@ export default (app: Express) => {
   userRoutes(app);
   brokerRoutes(app);
   propertyRoutes(app);
-  // adminRoutes(app);
+  adminRoutes(app);
 };
