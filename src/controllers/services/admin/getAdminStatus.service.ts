@@ -9,7 +9,7 @@ export default async function getAdminStatus(){
       },
    });
 
-   const countBrokers = await RealEstate.count({
+   const countRealEstate = await RealEstate.count({
       where: {
          status: 'active',
       },
@@ -21,6 +21,6 @@ export default async function getAdminStatus(){
       },
    });
 
-   return {properties: {title: 'Imóveis cadastrados', value: countProperties}, brokers: {title: 'Imobiliárias cadastradas', value: countBrokers}, totalAmount: {title: 'Valor em imóveis', value: sumPropertiesAmount}};
+   return {properties: {title: 'Imóveis cadastrados', value: countProperties}, brokers: {title: 'Imobiliárias cadastradas', value: countRealEstate}, totalAmount: {title: 'Valor em imóveis', value: sumPropertiesAmount}};
 
 }
