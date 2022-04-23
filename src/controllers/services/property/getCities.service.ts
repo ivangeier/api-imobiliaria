@@ -1,3 +1,4 @@
+import { any } from "joi";
 import Property from "../../../models/Property.model";
 
 export default async function getCities() {
@@ -11,7 +12,8 @@ export default async function getCities() {
    });
 
    const city = citiesArray.map((city) => {
-      return city.city;
+      const re = /(\b[a-z](?!\s))/g;
+      return {value: city.city, label: city.city.replace(re, function(x: any){return x.toUpperCase();})};
    });
    
    return city;
