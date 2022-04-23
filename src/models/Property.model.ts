@@ -78,6 +78,10 @@ const Property = sequelize.define(
     type: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    images: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true, 
     }
   },
   {
