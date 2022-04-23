@@ -1,3 +1,4 @@
+import RealEstate from "@src/models/RealEstate.model";
 import Property from "../../../models/Property.model";
 
 export default async function getPropertyById(id: string) {
@@ -5,6 +6,10 @@ export default async function getPropertyById(id: string) {
       where: {
          id,
       },
+      include: {
+         model: RealEstate,
+         attributes: ["name"]
+      }
    });
 
    if (!property) {
