@@ -7,7 +7,10 @@ export default async function getAllProperties() {
    include: {
       model: RealEstate,
       attributes: ["name"]
-   }
+   },
+   order:[
+      ['updatedAt', 'DESC']
+   ]
   });
 
   return properties.map((property) => {
