@@ -4,6 +4,7 @@ import createProperty from "./services/property/createProperty.service";
 import deleteProperty from "./services/property/deleteProperty.service";
 import getAllProperties from "./services/property/getAllProperties.service";
 import getPropertyById from "./services/property/getPropertyById.service";
+import getCities from "./services/property/getCities.service";
 
 const create = async (req: any, res: any) => {
   const { realEstateId } = jwt.decode(req)
@@ -18,6 +19,7 @@ const create = async (req: any, res: any) => {
 };
 
 const getAll = async (req: any, res: any) => {
+  
   try {
     const properties = await getAllProperties();
     res.status(200).json(properties);
@@ -48,10 +50,21 @@ const getById = async (req: any, res: any) => {
   }
 }
 
+const getCity = async (req: any, res: any) => {
+  try {
+   const cities = await getCities(); 
+   res.status(200).json(cities);
+  } catch (error: any) {
+    res.status(404).json(error.message);
+  }
+    
+  }
+
 
 export const PropertyController = {
   create,
   getAll,
   deleteById,
-  getById
+  getById,
+  getCity
 };
