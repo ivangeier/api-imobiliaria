@@ -1,4 +1,4 @@
-import RealEstate from "@src/models/RealEstate.model";
+import RealEstate from "../../../models/RealEstate.model";
 import Property from "../../../models/Property.model";
 
 export default async function getPropertyById(id: string) {
