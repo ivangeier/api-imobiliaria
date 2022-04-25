@@ -5,9 +5,7 @@ import deleteProperty from "./services/property/deleteProperty.service";
 import getAllProperties from "./services/property/getAllProperties.service";
 import getPropertyById from "./services/property/getPropertyById.service";
 import getCities from "./services/property/getCities.service";
-import searchByType from "./services/property/searchType.service";
-import searchByRentalPrice from "./services/property/searchRentalPrice.service";
-import searchBySellingPrice from "./services/property/searchSellingPrice.service";
+import getFilteredProperties from "./services/property/search.service";
 
 const create = async (req: any, res: any) => {
   const { realEstateId } = jwt.decode(req)
@@ -62,34 +60,16 @@ const getCity = async (req: any, res: any) => {
   }    
 }
 
-const searchType = async (req: any, res: any) => {
-  const { type } = req.params;
+const filterProperty = async (req: any, res: any) => {
+  const query = req.query;
+
   try {
-    const properties = await searchByType(type);
-    res.status(200).json(properties);   
+    const properties = await getFilteredProperties(query);
+    res.status(200).json(properties);
   } catch (error: any) {
     res.status(404).json(error.message);
   }
 }
-
-const searchPrice = async (req: any, res: any) => {
-  const type = req.query.type;
-  const min = req.query.min;
-  const max = req.query.max;
-
-  try {
-    if (type == 'rent') {
-      const properties = await searchByRentalPrice(min, max);
-      res.status(200).json(properties);
-    } else {
-      const properties = await searchBySellingPrice(min, max);
-      res.status(200).json(properties);
-    }
-  } catch (error: any) { 
-    res.status(404).json(error.message);
-  }
-}
-
 
 export const PropertyController = {
   create,
@@ -97,6 +77,5 @@ export const PropertyController = {
   deleteById,
   getById,
   getCity,
-  searchType,
-  searchPrice
+  filterProperty
 };
