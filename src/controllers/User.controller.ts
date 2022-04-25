@@ -2,12 +2,12 @@ import User from '../models/User.model';
 import {decrypt} from '../utils/encrypt';
 import {jwt} from '../utils/token';
 import createLogin from './services/auth/login.service';
-import updatePassword from './services/realestate/updatePassword.service';
 import createUser from './services/user/createUser.service';
 import deleteUser from './services/user/deleteUser.service';
 import getAllUsers from './services/user/getAllUsers.service';
 import getPayload from './services/user/getPayload.service';
 import getUserById from './services/user/getUserById.service';
+import updatePassword from './services/user/updatePassword.service';
 import updateUser from './services/user/updateUser.service';
 
 // 1. pega todos os clientes
