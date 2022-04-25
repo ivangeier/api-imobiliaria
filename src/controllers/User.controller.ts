@@ -99,13 +99,9 @@ const login = async (req: any, res: any) => {
 
   try {
     const user = await createLogin(email, password);
-    
     const payload = await getPayload(user)
-    console.log(payload);
-    
     const token = jwt.encode(payload);
     res.status(200).json({user, token});
-
   } catch (error: any) {
     res.status(400).json(error);
   }
