@@ -39,6 +39,10 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: true,
     },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   },
   {
     tableName: 'users',

@@ -11,7 +11,7 @@ export default async function createLogin(email: string, password: string) {
   const passwordMatch = await decrypt(password, user.password);
 
   if (passwordMatch) {
-    const {password, ...userWithoutPassword} = user;
+    const {password, ...userWithoutPassword} = user.get();
     return userWithoutPassword;
   } else {
     throw new Error('User not found');
