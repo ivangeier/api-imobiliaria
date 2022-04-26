@@ -6,4 +6,5 @@ type TPropertyQuery = {
    baths?: number;
    garage?: number;
    type?: string;
+   state?: string;
 };

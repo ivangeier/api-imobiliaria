@@ -2,7 +2,7 @@ import { Op } from "sequelize";
 import Property from "../../../models/Property.model";
 
 export default async function getFilteredProperties(queries: TPropertyQuery) {
-   const {mode, min, max, beds, baths, garage, type} = queries;
+   const {mode, min, max, beds, baths, garage, type, state} = queries;
  
    const properties = await Property.findAll({
      where: {
@@ -13,6 +13,7 @@ export default async function getFilteredProperties(queries: TPropertyQuery) {
       ...(baths ? {amountBathrooms: {[Op.gte]: baths}} : {}),
       ...(garage ? {amountGarage: {[Op.gte]: garage}} : {}),
       ...(type === 'apartamento' ? {type: 'apartamento'} : type === 'casa' ? {type: 'casa'} : {}),
+      ...(state ? {state: state} : {}),
      },
      order:[
       ['updatedAt', 'DESC']

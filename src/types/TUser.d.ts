@@ -7,4 +7,5 @@ type TUser = {
   password: string;
   role: string;
   isActive: boolean;
+  state: string;
 };
