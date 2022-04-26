@@ -3,11 +3,17 @@ import {decrypt} from '../../../utils/encrypt';
 import {jwt} from '../../../utils/token';
 
 export default async function createLogin(email: string, password: string) {
-  const user: any = await User.findOne({where: {email}});
+  const user: any = await User.findOne({
+    where: {
+      email,
+      isActive: true,
+    }
+  });
 
   if (!user) {
     throw new Error('Email not found');
   }
+ 
   const passwordMatch = await decrypt(password, user.password);
 
   if (passwordMatch) {
