@@ -10,6 +10,6 @@ export const userRoutes = (app: Express) => {
   app.post('/user/register', UserController.create);
   app.patch('/user/password',auth.authenticate(),UserController.passwordUpdate);
   app.put('/user/update', auth.authenticate(), UserController.updateAll);
-  app.delete('/user/delete/:id', auth.authenticate(), UserController.deleteOne);
+  app.delete('/user/delete', auth.authenticate(), UserController.deleteOne);
   app.post('/login', UserController.login);
 };
