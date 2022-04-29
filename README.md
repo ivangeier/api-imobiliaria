@@ -23,6 +23,33 @@ O objetivo da API é fornecer o back-end para a nossa aplicação princial proje
 
 https://api-imobiliaria-m5.herokuapp.com/
 
+## Rodando localmente
+
+Clone o repositório
+
+```bash
+  git clone https://github.com/ivangeier/api-imobiliaria.git
+```
+
+Acesse o diretório
+
+```bash
+  cd api-imobiliaria
+```
+
+Instale as dependências do projeto
+
+```bash
+  yarn
+```
+
+Crie uma cópia do arquivo `.env.example` e renomeie para `.env`. Será necessário preencher as variáveis com os seus acessos, você poserá cirar um banco de dados POSTGREE e um segredo próprio.
+
+Inicie o projeto, após preencher as variáveis de ambiente com o comando
+
+```bash
+  yarn dev
+```
 
 # Documentação da API
 
